@@ -1,19 +1,24 @@
-# --- PASSWORD PROTECTION ---
-password = st.text_input("Enter Password to Login:", type="password")
-if password != "Adnan123":  # Yahan apni marzi ka password rakh lo
-    st.error("🔒 Locked! Please enter the correct password.")
-    st.stop()  # Ye line tool ko wahin rok degi, aage kuch nahi chalega
-import streamlit as st
+import streamlit as st  # <--- Sab se pehle ye aana chahiye
 import azure.cognitiveservices.speech as speechsdk
 import os
 import tempfile
 import time
 
-# --- PAGE CONFIGURATION ---
+# 1. Page Config (Ye hamesha imports ke foran baad aati hai)
 st.set_page_config(page_title="Adnan Riaz Studio", page_icon="🎙️")
+
+# 2. Password Protection (Ye Page Config ke baad aana chahiye)
+# -----------------------------------------------------------
+password = st.text_input("🔒 Enter Password to Login:", type="password")
+
+if password != "Adnan123":  # <--- Yahan apni marzi ka password rakh lo
+    st.info("Please enter the correct password to access the studio.")
+    st.stop()  # <--- Ye command app ko yahin rok degi jab tak password sahi na ho
+# -----------------------------------------------------------
+
+# 3. Baqi App Yahan Se Shuru Hogi
 st.title("🎙️ Adnan Riaz Global Studio")
 st.caption("Professional Azure Neural Engine | 40 Unique Voices")
-
 # --- SECRET KEY MANAGEMENT ---
 if "AZURE_KEY" in st.secrets:
     AZURE_KEY = st.secrets["AZURE_KEY"]
@@ -139,5 +144,6 @@ if st.button("▶ GENERATE AUDIO"):
 
         except Exception as e:
             st.error(f"Error: {e}")
+
 
 
