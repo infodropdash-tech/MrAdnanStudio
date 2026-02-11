@@ -3,7 +3,6 @@ password = st.text_input("Enter Password to Login:", type="password")
 if password != "Adnan123":  # Yahan apni marzi ka password rakh lo
     st.error("🔒 Locked! Please enter the correct password.")
     st.stop()  # Ye line tool ko wahin rok degi, aage kuch nahi chalega
-
 import streamlit as st
 import azure.cognitiveservices.speech as speechsdk
 import os
@@ -140,4 +139,5 @@ if st.button("▶ GENERATE AUDIO"):
 
         except Exception as e:
             st.error(f"Error: {e}")
+
 
